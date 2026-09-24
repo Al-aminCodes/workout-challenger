@@ -1,5 +1,5 @@
 "use client";
-import AnalysisSection from "@/component/hendelBotton/analysis";
+
 import SavedCard from "@/component/share/SavedCard";
 import TodayCard from "@/component/share/todayCard";
 import { WorkoutContext } from "@/context/workoutContext";
@@ -8,8 +8,7 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 
 const MyPlanPage = () => {
-  const { todayPlan, setTodayPlan, saved, setSaved } =
-    useContext(WorkoutContext);
+  const { todayPlan, saved } = useContext(WorkoutContext);
   const [buttonType, setButtonType] = useState<string>("today");
   const handelBType = (type: string) => {
     setButtonType(type);
@@ -17,7 +16,7 @@ const MyPlanPage = () => {
   console.log(buttonType);
   return (
     <section className="container mx-auto my-10">
-      <div className="my-7">
+      <div className="my-7 p-5 md:p-0">
         <h2 className="text-4xl font-black text-white">MY PLAN</h2>
         <p className="mt-2 text-sm text-[#8e949e]">
           Cap of five lifts for today. Finish them, then load more.
@@ -76,7 +75,7 @@ const MyPlanPage = () => {
       </div>
       <div className="my-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         {/* name of each tab group should be unique */}
-        <div className="tabs tabs-box px-5">
+        <div className="tabs tabs-box ">
           <input
             type="radio"
             name="my_tabs_1"

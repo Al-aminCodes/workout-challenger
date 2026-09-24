@@ -9,24 +9,23 @@ import { FiClock, FiEye, FiStar, FiX } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const SavedCard = ({ workout }: { workout: IWorkout }) => {
-  const { saved, setSaved, count, setCount } = useContext(WorkoutContext);
+  const { saved, setSaved } = useContext(WorkoutContext);
   const hendelRemove = () => {
     const removed = saved.filter((work) => work.id !== workout.id);
     toast.info(`${workout.name} delete from Saved`);
     setSaved(removed);
-    setCount(count - 1);
   };
   return (
     <div className="w-full rounded-2xl border border-slate-700 bg-[#151820] p-4">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         {/* Image */}
-        <div className="h-20  shrink-0 overflow-hidden rounded-xl">
+        <div className="h-40 md:h-20 w-full shrink-0 overflow-hidden rounded-xl sm:w-38.5">
           <Image
             src={workout.image}
             alt={workout.name}
             width={154}
-            height={80}
-            className=" object-cover"
+            height={100}
+            className="h-full w-full object-cover"
           />
         </div>
 
@@ -39,7 +38,7 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
           <p className="text-sm text-slate-400">{workout.equipment}</p>
 
           {/* Stats */}
-          <div className="mt-2 flex items-center gap-4 text-sm text-slate-300">
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-300">
             {/* Duration */}
             <div className="flex items-center gap-1">
               <FiClock className="text-lg text-lime-400" />
@@ -61,7 +60,7 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
         </div>
 
         {/* Buttons */}
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex w-full shrink-0 items-center justify-between gap-3 sm:w-auto sm:justify-end">
           {/* View Details */}
           <Link href={`/${workout.id}`}>
             <button

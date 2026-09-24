@@ -22,9 +22,11 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation */}
-        <ul className="flex items-center gap-2">
-          <LinkStyle />
-        </ul>
+        <div className="hidden md:block">
+          <ul className="flex items-center gap-2 ">
+            <LinkStyle />
+          </ul>
+        </div>
         {/* right side */}
         <div className="flex items-center gap-7 text-sm">
           {/* Plan */}

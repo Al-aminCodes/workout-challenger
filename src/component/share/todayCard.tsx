@@ -9,33 +9,26 @@ import { FiCheck, FiClock, FiEye, FiStar, FiX } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const TodayCard = ({ workout }: { workout: IWorkout }) => {
-  const {
-    todayPlan,
-    setTodayPlan,
-
-    count,
-    setCount,
-  } = useContext(WorkoutContext);
+  const { todayPlan, setTodayPlan } = useContext(WorkoutContext);
   const hendelRemove = () => {
     const removed = todayPlan.filter((work) => work.id !== workout.id);
     setTodayPlan(removed);
     toast.info(`${workout.name} delete from Today Plans`);
-    setCount(count - 1);
   };
   const handelMark = () => {
     toast.info(`The ${workout.name} workout done`);
   };
   return (
     <div className="w-full rounded-2xl border border-slate-700 bg-[#151820] p-4">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center">
         {/* Image */}
-        <div className="h-20  shrink-0 overflow-hidden rounded-xl">
+        <div className="h-40 md:h-20 w-full shrink-0 overflow-hidden rounded-xl md:w-40">
           <Image
             src={workout.image}
             alt={workout.name}
             width={160}
             height={80}
-            className=" object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
 
@@ -48,7 +41,7 @@ const TodayCard = ({ workout }: { workout: IWorkout }) => {
           <p className="text-sm text-slate-400">{workout.equipment}</p>
 
           {/* Stats */}
-          <div className="mt-2 flex items-center gap-4 text-sm text-slate-300">
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-300">
             {/* Duration */}
             <div className="flex items-center gap-1">
               <FiClock className="text-lg text-lime-400" />
@@ -70,7 +63,7 @@ const TodayCard = ({ workout }: { workout: IWorkout }) => {
         </div>
 
         {/* Buttons */}
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex w-full shrink-0 flex-wrap items-center gap-2 md:w-auto md:flex-nowrap">
           {/* View Details */}
           <Link href={`/${workout.id}`}>
             <button
