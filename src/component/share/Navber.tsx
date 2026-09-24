@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import navLogo from "@/assets/logo.png";
 import LinkStyle from "../hendelBotton/linkColor";
+import NavButton from "../hendelBotton/navbarButton";
 
 const Navbar = () => {
   return (
@@ -27,28 +28,7 @@ const Navbar = () => {
         {/* right side */}
         <div className="flex items-center gap-7 text-sm">
           {/* Plan */}
-          <Link
-            href="/myPlan"
-            className="flex items-center gap-2 text-[#b7bbc0] transition hover:text-white"
-          >
-            <span>Plan</span>
-
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#b6f500] px-1.5 text-xs font-bold text-black">
-              0
-            </span>
-          </Link>
-
-          {/* Saved */}
-          <Link
-            href="/myPlan"
-            className="flex items-center gap-2 text-[#8b9198] transition hover:text-white"
-          >
-            <span>Saved</span>
-
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-[#35393e] px-1.5 text-xs text-[#a5aab0]">
-              0
-            </span>
-          </Link>
+          <NavButton />
         </div>
       </div>
     </nav>

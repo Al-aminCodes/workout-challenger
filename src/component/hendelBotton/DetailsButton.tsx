@@ -14,27 +14,29 @@ const DetailsButton = ({ workout }: { workout: IWorkout }) => {
   if (!workoutContext) {
     return notFound();
   }
-  const { todayPlan, setTodayPlan, saved, setSaved } = workoutContext;
+  const { todayPlan, setTodayPlan, saved, setSaved, count, setCount } =
+    workoutContext;
   const isAdd = todayPlan.some((work: IWorkout) => work.id === workout.id);
   const isSave = saved.some((work: IWorkout) => work.id === workout.id);
   const hendelAddPlan = () => {
     if (isAdd) {
-      toast.error(`${workout.name} alraedy have!`);
+      toast.error(`${workout.name} alraedy have today's plan!`);
       return;
     }
     const newAddPlan = [...todayPlan, workout];
 
     setTodayPlan(newAddPlan);
-    toast.success(`${workout.name} Added to today's plan`);
+    setCount(count + 1);
+    toast.success(` Added to today's plan`);
   };
   const hendelSaved = () => {
     if (isSave) {
-      toast.error(`${workout.name} alraedy have!`);
+      toast.error(`${workout.name} alraedy have saved!`);
       return;
     }
     const newSaved = [...saved, workout];
     setSaved(newSaved);
-    toast.success(`${workout.name} Added to Saved`);
+    toast.success(`Added to Saved`);
   };
 
   return (

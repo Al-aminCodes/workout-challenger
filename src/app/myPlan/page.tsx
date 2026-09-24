@@ -76,11 +76,11 @@ const MyPlanPage = () => {
       </div>
       <div className="my-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         {/* name of each tab group should be unique */}
-        <div className="tabs tabs-box">
+        <div className="tabs tabs-box px-5">
           <input
             type="radio"
             name="my_tabs_1"
-            className="tab"
+            className={`tab ${buttonType === "today" ? "text-[#ccff00]" : ""}`}
             aria-label="Today's Plan"
             defaultChecked
             onClick={() => handelBType("today")}
@@ -88,7 +88,7 @@ const MyPlanPage = () => {
           <input
             type="radio"
             name="my_tabs_1"
-            className="tab"
+            className={`tab ${buttonType === "saved" ? "text-[#ccff00]" : ""}`}
             aria-label="Saved"
             onClick={() => handelBType("saved")}
           />
