@@ -14,7 +14,7 @@ const LinkStyle = () => {
     },
     {
       name: "My Plan",
-      href: "/my-plan",
+      href: "/myPlan",
     },
   ];
   return (

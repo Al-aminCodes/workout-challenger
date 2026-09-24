@@ -3,7 +3,8 @@ import { IWorkout } from "@/type/workoutType";
 import { notFound } from "next/navigation";
 
 import Image from "next/image";
-import { FiBookmark, FiCalendar } from "react-icons/fi";
+
+import DetailsButton from "@/component/hendelBotton/DetailsButton";
 interface IWorkoutDatailsPros {
   params: Promise<{ id: string }>;
 }
@@ -140,39 +141,8 @@ const DatailPage = async ({ params }: IWorkoutDatailsPros) => {
           </div>
 
           {/* Action Footer Buttons */}
-          <div className="flex gap-4 pt-4 border-t border-gray-800">
-            <button
-              className="
-                    btn
-                    flex-1
-                    border-0
-                    bg-[#baff00]
-                    font-bold
-                    uppercase
-                    text-black
-                    hover:bg-[#c8ff33]
-                  "
-            >
-              <FiCalendar className="text-lg" />
-              Add to today&apos;s plan
-            </button>
-            <button
-              className="
-                    btn
-                    flex-1
-                    border-[#3a404a]
-                    bg-transparent
-                    font-bold
-                    uppercase
-                    text-[#bfc3ca]
-                    hover:border-[#baff00]
-                    hover:bg-transparent
-                    hover:text-[#baff00]
-                  "
-            >
-              <FiBookmark className="text-lg" />
-              Save for later
-            </button>
+          <div>
+            <DetailsButton workout={workout}></DetailsButton>
           </div>
         </div>
       </div>

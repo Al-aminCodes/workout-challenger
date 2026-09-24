@@ -6,10 +6,16 @@ const Footer = () => {
   return (
     <footer className="border-t border-[#1d1f22] bg-[#090A0D]">
       <div className="container mx-auto flex justify-between py-8 px-2  ">
-        <div className="flex items-center gap-2">
-          <Image src={footerLogo} width={28} height={28} alt="Fitlog logo" />
+        <div className="flex items-center gap-2 ">
+          <Image
+            src={footerLogo}
+            width={28}
+            height={28}
+            alt="Fitlog logo"
+            className="hidden md:block"
+          />
 
-          <span className="text-lg font-bold tracking-wide text-white">
+          <span className="text-lg font-bold tracking-wide text-white hidden md:block">
             FITLOG
           </span>
         </div>

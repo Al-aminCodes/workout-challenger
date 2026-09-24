@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="flex items-center gap-7 text-sm">
           {/* Plan */}
           <Link
-            href="/my-plan"
+            href="/myPlan"
             className="flex items-center gap-2 text-[#b7bbc0] transition hover:text-white"
           >
             <span>Plan</span>
@@ -40,7 +40,7 @@ const Navbar = () => {
 
           {/* Saved */}
           <Link
-            href="/saved"
+            href="/myPlan"
             className="flex items-center gap-2 text-[#8b9198] transition hover:text-white"
           >
             <span>Saved</span>

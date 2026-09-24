@@ -10,7 +10,7 @@ const LibraryPage = async () => {
     <section>
       <div className="container mx-auto my-10 ">
         <div className="mb-5">
-          <h2 className="text-4xl font-black text-white ">THE LIBRARY</h2>
+          <h2 className="text-4xl font-black text-white">THE LIBRARY</h2>
           <p className="mt-2 text-sm text-[#8e949e]">
             Twelve lifts covering every major muscle group.
           </p>
