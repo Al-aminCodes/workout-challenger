@@ -9,7 +9,7 @@ import LinkStyle from "../hendelBotton/linkColor";
 
 const Navbar = () => {
   return (
-    <nav className="border-b border-[#1d1f22] bg-[#0b0d0f]">
+    <nav className=" sticky top-0 z-50 border-b border-[#1d1f22] bg-[#0b0d0f]">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">

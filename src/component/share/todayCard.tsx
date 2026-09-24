@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { FaFire } from "react-icons/fa";
 import { FiCheck, FiClock, FiEye, FiStar, FiX } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const TodayCard = ({ workout }: { workout: IWorkout }) => {
   const {
@@ -18,7 +19,11 @@ const TodayCard = ({ workout }: { workout: IWorkout }) => {
   const hendelRemove = () => {
     const removed = todayPlan.filter((work) => work.id !== workout.id);
     setTodayPlan(removed);
-    setCount(count - 1)
+    toast.info(`${workout.name} delete from Today Plans`);
+    setCount(count - 1);
+  };
+  const handelMark = () => {
+    toast.info(`The ${workout.name} workout done`);
   };
   return (
     <div className="w-full rounded-2xl border border-slate-700 bg-[#151820] p-4">
@@ -79,7 +84,7 @@ const TodayCard = ({ workout }: { workout: IWorkout }) => {
 
           {/* Mark as Done */}
           <button
-            // onClick={() => onDone?.(workout.id)}
+            onClick={() => handelMark()}
             className="btn btn-sm rounded-full border-none bg-lime-400 px-5 text-black hover:bg-lime-300"
           >
             <FiCheck />

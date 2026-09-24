@@ -3,6 +3,7 @@ import AnalysisSection from "@/component/hendelBotton/analysis";
 import SavedCard from "@/component/share/SavedCard";
 import TodayCard from "@/component/share/todayCard";
 import { WorkoutContext } from "@/context/workoutContext";
+import { IWorkout } from "@/type/workoutType";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 
@@ -24,7 +25,54 @@ const MyPlanPage = () => {
       </div>
       {/* anaylsic section */}
       <div className="grid grid-cols-3 items-center py-6 px-8 bg-[#0c0d12] rounded-2xl border border-gray-900 shadow-xl w-full">
-        <AnalysisSection />
+        <div className="flex flex-col gap-1 pl-2">
+          <p className="text-gray-500 font-medium text-xs md:text-sm tracking-wide">
+            Exercises
+          </p>
+          <h2 className="text-[#ccff00] text-3xl md:text-4xl font-extrabold tracking-tight">
+            {buttonType === "today" ? todayPlan.length : saved.length}
+          </h2>
+        </div>
+
+        {/* Column 2: Minutes */}
+        <div className="flex flex-col gap-1 border-x border-gray-800/60 px-8 md:px-12">
+          <p className="text-gray-500 font-medium text-xs md:text-sm tracking-wide">
+            Minutes
+          </p>
+          <h2 className="text-white text-3xl md:text-4xl font-extrabold tracking-tight">
+            {buttonType === "today"
+              ? todayPlan.reduce(
+                  (sum: number, currentTime: IWorkout) =>
+                    sum + currentTime.duration,
+                  0,
+                )
+              : saved.reduce(
+                  (sum: number, currentTime: IWorkout) =>
+                    sum + currentTime.duration,
+                  0,
+                )}
+          </h2>
+        </div>
+
+        {/* Column 3: Calories */}
+        <div className="flex flex-col gap-1 pl-6 md:pl-10">
+          <p className="text-gray-500 font-medium text-xs md:text-sm tracking-wide">
+            Calories
+          </p>
+          <h2 className="text-white text-3xl md:text-4xl font-extrabold tracking-tight">
+            {buttonType === "today"
+              ? todayPlan.reduce(
+                  (sum: number, currentTime: IWorkout) =>
+                    sum + currentTime.caloriesBurned,
+                  0,
+                )
+              : saved.reduce(
+                  (sum: number, currentTime: IWorkout) =>
+                    sum + currentTime.caloriesBurned,
+                  0,
+                )}
+          </h2>
+        </div>
       </div>
       <div className="my-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         {/* name of each tab group should be unique */}

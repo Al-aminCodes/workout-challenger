@@ -5,7 +5,7 @@ import { FiBookmark, FiCalendar } from "react-icons/fi";
 import { WorkoutContext } from "@/context/workoutContext";
 import { notFound } from "next/navigation";
 import { IWorkout } from "@/type/workoutType";
-import { toUnicode } from "punycode";
+
 import { toast } from "react-toastify";
 
 const DetailsButton = ({ workout }: { workout: IWorkout }) => {

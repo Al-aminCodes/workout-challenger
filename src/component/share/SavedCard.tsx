@@ -5,19 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FaFire } from "react-icons/fa";
-import { FiCheck, FiClock, FiEye, FiStar, FiX } from "react-icons/fi";
+import { FiClock, FiEye, FiStar, FiX } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const SavedCard = ({ workout }: { workout: IWorkout }) => {
-  const {
-    todayPlan,
-    setTodayPlan,
-
-    count,
-    setCount,
-  } = useContext(WorkoutContext);
+  const { saved, setSaved, count, setCount } = useContext(WorkoutContext);
   const hendelRemove = () => {
-    const removed = todayPlan.filter((work) => work.id !== workout.id);
-    setTodayPlan(removed);
+    const removed = saved.filter((work) => work.id !== workout.id);
+    toast.info(`${workout.name} delete from Saved`);
+    setSaved(removed);
     setCount(count - 1);
   };
   return (
@@ -79,7 +75,7 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
 
           {/* Remove */}
           <button
-            // onClick={() => onRemove?.(workout.id)}
+            onClick={() => hendelRemove()}
             className="btn btn-circle btn-ghost btn-sm text-slate-500 hover:bg-transparent hover:text-white"
           >
             <FiX className="text-lg" />
