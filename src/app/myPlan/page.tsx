@@ -8,40 +8,13 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
 const MyPlanPage = () => {
-  const { todayPlan, setTodayPlan, saved, setSaved } =
-    useContext(WorkoutContext);
+  const { todayPlan, saved, loading, setLoading } = useContext(WorkoutContext);
   const [buttonType, setButtonType] = useState<"today" | "saved">("today");
-  const [loading, setLoading] = useState<boolean>(true);
+
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
     "duration",
   );
   // set the data to local stroge
-  useEffect(() => {
-    const storedTodayPlan = localStorage.getItem("todayPlan");
-    const storedSaved = localStorage.getItem("saved");
-
-    if (storedTodayPlan) {
-      setTodayPlan(JSON.parse(storedTodayPlan));
-    }
-
-    if (storedSaved) {
-      setSaved(JSON.parse(storedSaved));
-    }
-    setTimeout(() => setLoading(false), 0);
-  }, []);
-  // Save todayPlan to localStorage
-  useEffect(() => {
-    if (!loading) {
-      localStorage.setItem("fitlog todayPlan", JSON.stringify(todayPlan));
-    }
-  }, [todayPlan, loading]);
-
-  // Save saved workouts to localStorage
-  useEffect(() => {
-    if (!loading) {
-      localStorage.setItem(" fitlog saved", JSON.stringify(saved));
-    }
-  }, [saved, loading]);
 
   const sortBooks = (work: IWorkout[]) => {
     const sortedBooks = [...work];
