@@ -29,11 +29,14 @@ Workout Challenger is a modern workout library web application that helps users 
 
    * Add workouts to your saved list.
    * Remove individual workouts from the saved list.
+   * save local Storage memory
 
 4. **Personal Workout Plan**
 
    * Add workouts to your personal plan.
    * Manage and organize workouts for your training routine.
+   * save local Storage memory
+     
 
 5. **Interactive Notifications**
 
