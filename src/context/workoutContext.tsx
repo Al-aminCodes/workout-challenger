@@ -14,16 +14,16 @@ interface IWorkoutContextType {
   setTodayPlan: Dispatch<SetStateAction<IWorkout[]>>;
   saved: IWorkout[];
   setSaved: Dispatch<SetStateAction<IWorkout[]>>;
-  loading : boolean ;
-  setLoading:Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 export const WorkoutContext = createContext<IWorkoutContextType>({
   todayPlan: [],
   setTodayPlan: () => {},
   saved: [],
   setSaved: () => {},
-  loading : true, 
-  setLoading: () => {}
+  loading: true,
+  setLoading: () => {},
 });
 
 const WorkoutProvaider = ({ children }: { children: ReactNode }) => {
