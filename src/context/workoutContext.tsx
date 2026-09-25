@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
 import { IWorkout } from "@/type/workoutType";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface IWorkoutContextType {
   todayPlan: IWorkout[];
@@ -35,6 +35,7 @@ const WorkoutProvider = ({ children }: { children: ReactNode }) => {
     const storedSaved = localStorage.getItem("saved");
 
     if (storedTodayPlan) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTodayPlan(JSON.parse(storedTodayPlan));
     }
 

@@ -5,7 +5,7 @@ import TodayCard from "@/component/share/todayCard";
 import { WorkoutContext } from "@/context/workoutContext";
 import { IWorkout } from "@/type/workoutType";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 const MyPlanPage = () => {
   const { todayPlan, saved, loading, setLoading } = useContext(WorkoutContext);
@@ -41,7 +41,7 @@ const MyPlanPage = () => {
     }, 200);
   };
   return (
-    <section className="container mx-auto my-10">
+    <section className="container mx-auto my-10 ">
       <div className="my-7 p-5 md:p-0">
         <h2 className="text-4xl font-black text-white">MY PLAN</h2>
         <p className="mt-2 text-sm text-[#8e949e]">
@@ -49,7 +49,7 @@ const MyPlanPage = () => {
         </p>
       </div>
       {/* anaylsic section */}
-      <div className="grid grid-cols-3 items-center py-6 px-8 bg-[#0c0d12] rounded-2xl border border-gray-900 shadow-xl w-full">
+      <div className="grid grid-cols-3 items-center py-6 px-8 bg-[#0c0d12] rounded-2xl border border-gray-900 shadow-xl w-full h-40">
         <div className="flex flex-col gap-1 pl-2">
           <p className="text-gray-500 font-medium text-xs md:text-sm tracking-wide">
             Exercises
@@ -101,22 +101,20 @@ const MyPlanPage = () => {
       </div>
       <div className="my-10 flex flex-col gap-5 md:flex-row items-center md:justify-between">
         {/* name of each tab group should be unique */}
-        <div className="tabs tabs-box ">
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className={`tab ${buttonType === "today" ? "text-[#ccff00]" : ""}`}
-            aria-label="Today's Plan"
-            defaultChecked
+        <div className="tabs tabs-box">
+          <button
             onClick={() => handelBType("today")}
-          />
-          <input
-            type="radio"
-            name="my_tabs_1"
-            className={`tab ${buttonType === "saved" ? "text-[#ccff00]" : ""}`}
-            aria-label="Saved"
+            className={`tab ${buttonType === "today" ? "text-[#ccff00] bg-[#2B303D]" : ""}`}
+          >
+            Today&apos;s Plan
+          </button>
+
+          <button
             onClick={() => handelBType("saved")}
-          />
+            className={`tab ${buttonType === "saved" ? "text-[#ccff00] bg-[#2B303D]" : ""}`}
+          >
+            Saved
+          </button>
         </div>
         <div className="flex items-center gap-4">
           <p className="whitespace-nowrap text-sm font-medium text-white">
