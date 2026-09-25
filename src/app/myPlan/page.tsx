@@ -6,11 +6,11 @@ import { WorkoutContext } from "@/context/workoutContext";
 import { IWorkout } from "@/type/workoutType";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
 
 const MyPlanPage = () => {
   const { todayPlan, saved } = useContext(WorkoutContext);
-  const [buttonType, setButtonType] = useState<string>("today");
+  const [buttonType, setButtonType] = useState<"today" | "saved">("today");
+  const [loading, setLoading] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
     "duration",
   );
@@ -29,10 +29,14 @@ const MyPlanPage = () => {
   };
   const sortedWorkoutToday = sortBooks(todayPlan);
   const sortedWorkoutSaved = sortBooks(saved);
-  const handelBType = (type: string) => {
+  const handelBType = (type: "today" | "saved") => {
+    setLoading(true);
     setButtonType(type);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
   };
-  console.log(buttonType);
   return (
     <section className="container mx-auto my-10">
       <div className="my-7 p-5 md:p-0">
@@ -92,7 +96,7 @@ const MyPlanPage = () => {
           </h2>
         </div>
       </div>
-      <div className="my-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      <div className="my-10 flex flex-col gap-5 md:flex-row items-center md:justify-between">
         {/* name of each tab group should be unique */}
         <div className="tabs tabs-box ">
           <input
@@ -116,41 +120,46 @@ const MyPlanPage = () => {
             Sort By
           </p>
 
-          <div className="relative">
+          <div className="relative w-40">
             <select
               value={sortBy}
               onChange={(e) =>
                 setSortBy(e.target.value as "duration" | "calories" | "rating")
               }
-              className="select select-ghost h-10 min-h-10 appearance-none border border-[#baff00] pr-10 text-white focus:border-[#baff00] focus:outline-none focus:ring-0"
+              className="select select-success"
             >
               <option value="duration">Duration</option>
               <option value="calories">Calories</option>
               <option value="rating">Rating</option>
             </select>
-
-            <FiChevronDown
-              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#baff00]"
-              size={18}
-            />
           </div>
         </div>
       </div>
 
-      {buttonType === "today" ? (
+      {loading ? (
+        <div className="flex min-h-60 items-center justify-center rounded-2xl bg-[#151820]">
+          <span className="loading loading-spinner loading-lg text-[#baff00]"></span>
+
+          <p className="ml-3 text-sm font-medium text-[#A1A1AA]">
+            Loading workouts…
+          </p>
+        </div>
+      ) : buttonType === "today" ? (
         sortedWorkoutToday.length > 0 ? (
           <div className="grid gap-5">
             {sortedWorkoutToday.map((workout) => (
-              <TodayCard key={workout.id} workout={workout}></TodayCard>
+              <TodayCard key={workout.id} workout={workout} />
             ))}
           </div>
         ) : (
           <div className="container mx-auto rounded-2xl bg-[#151820] p-20">
-            <div className="grid justify-center items-center  text-center">
+            <div className="grid items-center justify-center text-center">
               <h2 className="text-xl font-bold text-white">NOTHING HERE YET</h2>
-              <p className="mt-2  mb-6 text-sm text-[#A1A1AA]">
+
+              <p className="mt-2 mb-6 text-sm text-[#A1A1AA]">
                 Browse the library and add a lift to get today moving.
               </p>
+
               <Link
                 href="/"
                 className="btn rounded-2xl border-0 bg-[#baff00] font-bold text-black hover:bg-[#c8ff33]"
@@ -163,16 +172,18 @@ const MyPlanPage = () => {
       ) : sortedWorkoutSaved.length > 0 ? (
         <div className="grid gap-5">
           {sortedWorkoutSaved.map((workout) => (
-            <SavedCard key={workout.id} workout={workout}></SavedCard>
+            <SavedCard key={workout.id} workout={workout} />
           ))}
         </div>
       ) : (
         <div className="container mx-auto rounded-2xl bg-[#151820] p-20">
-          <div className="grid justify-center items-center  text-center">
+          <div className="grid items-center justify-center text-center">
             <h2 className="text-xl font-bold text-white">NOTHING HERE YET</h2>
-            <p className="mt-2  mb-6 text-sm text-[#A1A1AA]">
+
+            <p className="mt-2 mb-6 text-sm text-[#A1A1AA]">
               Browse the library and add a lift to get today moving.
             </p>
+
             <Link
               href="/"
               className="btn rounded-2xl border-0 bg-[#baff00] font-bold text-black hover:bg-[#c8ff33]"

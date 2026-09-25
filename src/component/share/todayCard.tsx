@@ -13,9 +13,11 @@ const TodayCard = ({ workout }: { workout: IWorkout }) => {
   const hendelRemove = () => {
     const removed = todayPlan.filter((work) => work.id !== workout.id);
     setTodayPlan(removed);
-    toast.info(`${workout.name} delete from Today Plans`);
+    toast.success(`${workout.name} delete from Today Plans`);
   };
   const handelMark = () => {
+    const removed = todayPlan.filter((work) => work.id !== workout.id);
+    setTodayPlan(removed);
     toast.info(`The ${workout.name} workout done`);
   };
   return (
