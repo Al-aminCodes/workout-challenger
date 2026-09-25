@@ -6,10 +6,29 @@ import { WorkoutContext } from "@/context/workoutContext";
 import { IWorkout } from "@/type/workoutType";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
 
 const MyPlanPage = () => {
   const { todayPlan, saved } = useContext(WorkoutContext);
   const [buttonType, setButtonType] = useState<string>("today");
+  const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
+    "duration",
+  );
+  const sortBooks = (work: IWorkout[]) => {
+    const sortedBooks = [...work];
+
+    if (sortBy === "duration") {
+      sortedBooks.sort((a, b) => b.duration - a.duration);
+    } else if (sortBy === "calories") {
+      sortedBooks.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    } else if (sortBy === "rating") {
+      sortedBooks.sort((a, b) => b.rating - a.rating);
+    }
+
+    return sortedBooks;
+  };
+  const sortedWorkoutToday = sortBooks(todayPlan);
+  const sortedWorkoutSaved = sortBooks(saved);
   const handelBType = (type: string) => {
     setButtonType(type);
   };
@@ -92,26 +111,36 @@ const MyPlanPage = () => {
             onClick={() => handelBType("saved")}
           />
         </div>
-        <div className="flex justify-center m-5 ">
-          <select
-            // value={sortBy}
-            // onChange={(e) =>
-            //   setSortBy(e.target.value as "rating" | "pages" | "year")
-            // }
-            className="select select-success"
-          >
-            <option disabled={true}>Sort by</option>
-            <option value={"rating"}>Rating</option>
-            <option value={"pages"}>Number of pages</option>
-            <option value={"year"}>Publisher year</option>
-          </select>
+        <div className="flex items-center gap-4">
+          <p className="whitespace-nowrap text-sm font-medium text-white">
+            Sort By
+          </p>
+
+          <div className="relative">
+            <select
+              value={sortBy}
+              onChange={(e) =>
+                setSortBy(e.target.value as "duration" | "calories" | "rating")
+              }
+              className="select select-ghost h-10 min-h-10 appearance-none border border-[#baff00] pr-10 text-white focus:border-[#baff00] focus:outline-none focus:ring-0"
+            >
+              <option value="duration">Duration</option>
+              <option value="calories">Calories</option>
+              <option value="rating">Rating</option>
+            </select>
+
+            <FiChevronDown
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#baff00]"
+              size={18}
+            />
+          </div>
         </div>
       </div>
 
       {buttonType === "today" ? (
-        todayPlan.length > 0 ? (
+        sortedWorkoutToday.length > 0 ? (
           <div className="grid gap-5">
-            {todayPlan.map((workout) => (
+            {sortedWorkoutToday.map((workout) => (
               <TodayCard key={workout.id} workout={workout}></TodayCard>
             ))}
           </div>
@@ -131,9 +160,9 @@ const MyPlanPage = () => {
             </div>
           </div>
         )
-      ) : saved.length > 0 ? (
+      ) : sortedWorkoutSaved.length > 0 ? (
         <div className="grid gap-5">
-          {saved.map((workout) => (
+          {sortedWorkoutSaved.map((workout) => (
             <SavedCard key={workout.id} workout={workout}></SavedCard>
           ))}
         </div>

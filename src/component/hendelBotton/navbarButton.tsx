@@ -25,7 +25,7 @@ const NavButton = () => {
       >
         <span>Saved</span>
 
-        <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-[#35393e] px-1.5 text-xs text-[#a5aab0]">
+        <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-[#35393e] px-1.5 text-xs text-white">
           {saved.length}
         </span>
       </Link>
